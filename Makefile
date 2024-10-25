@@ -6,7 +6,7 @@
 #    By: tfregni <tfregni@student.42berlin.de>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 20:41:46 by tfregni           #+#    #+#              #
-#    Updated: 2023/09/23 12:39:37 by tfregni          ###   ########.fr        #
+#    Updated: 2024/10/25 18:15:31 by tfregni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ DSYM		= *.dSYM
 RM			= rm -rf
 MAKE		= make -s
 
+INC 		+= -I${MLX_PATH}
+LINKS 		+= -L./${MLX_PATH} -lmlx
+
 ifeq (${UNAME_S}, Linux)
 SRCS		+= $(addprefix $(SRCS_DIR)/, event_handler_linux.c libx_linux.c)
 MLX_PATH	= mlx-linux
@@ -48,8 +51,7 @@ LINKS		+= -framework OpenGL -framework AppKit
 INC			+= -Imac
 endif
 
-INC 		+= -I${MLX_PATH}
-LINKS 		+= -L./${MLX_PATH} -lmlx
+all		: mlx libft ${NAME}
 
 mlx		:
 	@if [ ! -d "./$(MLX_PATH)" ]; then \
@@ -72,7 +74,6 @@ ${NAME}	: ${OBJS}
 $(OBJS_DIR)/%.o:$(SRCS_DIR)/%.c | $(OBJS_DIR)
 	${CC} ${CFLAGS} ${INC} -c $< -o $@
 
-all		: mlx
 
 # ifneq wasn't working because of missing quotes
 # ifneq ("${RE_LIBFT}" yes

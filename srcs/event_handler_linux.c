@@ -6,7 +6,7 @@
 /*   By: tfregni <tfregni@student.42berlin.de>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/03 12:29:38 by tvasilev          #+#    #+#             */
-/*   Updated: 2023/09/23 13:04:33 by tfregni          ###   ########.fr       */
+/*   Updated: 2024/10/15 11:07:17 by tfregni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,6 @@ void	ambient_light(int keycode, t_scene *scene)
 
 int	key_handle(int keycode, t_scene *scene)
 {
-	t_img	*data;
-
-	data = scene->img;
 	if (keycode == ESC)
 		mlx_loop_end(scene->img->mlx_ptr);
 	else if (keycode == PLUS || keycode == MINUS || keycode == UP
